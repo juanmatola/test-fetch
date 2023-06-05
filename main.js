@@ -12,7 +12,8 @@ function sendPost() {
     fetch('http://iot3.ischdesign.com:33333/submit-form', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-React-Server-Location': window.location.origin
         },
         body: JSON.stringify(formData)
     }).then(response => {
@@ -29,7 +30,10 @@ function sendPost() {
 }
 
 fetch('http://iot3.ischdesign.com:33333/get-csrf', {
-    method: 'GET'
+    method: 'GET',
+    headers: {
+        'X-React-Server-Location': window.location.origin
+    }
 }).then(response => {
     if (response.ok) {
         return response.text();
